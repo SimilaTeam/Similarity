@@ -742,7 +742,7 @@ namespace SIM {
                         if (Hitbox_Dependency && (Hitbox.width != Size.x || Hitbox.height != 2*Data.Amplitude)) {
                             Hitbox.width = Size.x;
                             Hitbox.height = 2*Data.Amplitude;
-                            setOrigin(Origin);
+                            setOrigin(sf::Vector2f (Origin.x, Data.Amplitude) );
                         }
 
                         for (unsigned int i = 0; i < TextBox.size(); ++i) {
@@ -766,7 +766,7 @@ namespace SIM {
                         if (Hitbox_Dependency && (Hitbox.width != Size.x || Hitbox.height != 2*Data.Amplitude)) {
                             Hitbox.width = Size.x;
                             Hitbox.height = 2*Data.Amplitude;
-                            setOrigin(Origin);
+                            setOrigin(sf::Vector2f (Origin.x, Data.Amplitude) );
                         }
 
                         for (unsigned int i = 0; i < TextBox.size(); ++i) {
@@ -786,13 +786,13 @@ namespace SIM {
 
                         if (Background_Dependency && Background.getSize() != sf::Vector2f(2*Amplitude, 2*Amplitude)) {
                             Background.setSize(sf::Vector2f(2*Amplitude, 2*Amplitude));
-                            setOrigin (sf::Vector2f (Amplitude, Amplitude));
+                            setOrigin (sf::Vector2f (Amplitude, Amplitude) );
                         }
 
                         if (Hitbox_Dependency && (Hitbox.width != 2*Amplitude || Hitbox.height != 2*Amplitude)) {
                             Hitbox.width = 2*Amplitude;
                             Hitbox.height = 2*Amplitude;
-                            setOrigin(Origin);
+                            setOrigin(sf::Vector2f (Amplitude, Amplitude) );
                         }
 
                         for (unsigned int i = 0; i < TextBox.size(); ++i) {
