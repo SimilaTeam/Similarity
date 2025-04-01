@@ -17,7 +17,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "SpriteSheet.hpp"
-#include "Physics.hpp"
 #include "Time.hpp"
 
 namespace SIM {
@@ -37,6 +36,9 @@ namespace SIM {
         std::string Animation;
 
         sf::Vector2f Velocity;
+
+        unsigned int Animation_Phase = 0;
+        unsigned int Animation_Plays = 0;
 
     public:
 
@@ -73,22 +75,24 @@ namespace SIM {
             static sf::Clock Animation_Time;
             static std::string PreviousAnimation = Animation;
             static bool LoadFrame = true;
-            static unsigned int phase = 0;
 
             if (PreviousAnimation != Animation) {
-                phase = 0;
+                Animation_Phase = 0;
                 Animation_Time.restart();
                 LoadFrame = true;
+                Animation_Plays = 0;
             }
             else {
                 if (LoadFrame) {
-                    Sprite.setTextureRect (Sprite_Sheet.Sheet[Animation].at(phase));
 
-                    if (phase == Sprite_Sheet.Sheet[Animation].size()-1) {
-                        phase = 0;
+                    Sprite.setTextureRect (Sprite_Sheet.Sheet[Animation].at(Animation_Phase));
+
+                    if (Animation_Phase == Sprite_Sheet.Sheet[Animation].size()-1) {
+                        Animation_Phase = 0;
+                        ++Animation_Plays;
                     }
                     else {
-                        ++phase;
+                        ++Animation_Phase;
                     }
 
                     LoadFrame = false;
@@ -104,9 +108,27 @@ namespace SIM {
             }
 
             if (isGeoCentered) {
-                Sprite.setOrigin (sf::Vector2f(Sprite.getTextureRect().width/2, Sprite.getTextureRect().height/2));
+                Sprite.setOrigin (sf::Vector2f(Sprite.getLocalBounds().width/2, Sprite.getLocalBounds().height/2));
             }
         }
+
+        /// GETANIMATIONPHASE
+        /*
+            >! @brief Returns the current animation frame.
+            -
+            >! @return Animation_Phase - the current index.
+        */
+
+        unsigned int getAnimationPhase () const {    return Animation_Phase;    }
+
+        /// GETANIMATIONPLAYS
+        /*
+            >! @brief Returns the count of loops for a specific animation.
+            -
+            >! @return Animation_Plays - how many times the animation has been played since it started.
+        */
+
+        unsigned int getAnimationPlays () const {    return Animation_Plays;    }
 
         sf::Vector2f getVelocity () const {    return Velocity;    }
 
