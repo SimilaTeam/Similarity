@@ -36,10 +36,10 @@ namespace SIM {
         struct Animation_Data {
 
             SIM::UI::Animation_Types Animation_Type;
-            float Speed = 0, Amplitude = 1, Frequency = 1, Angular_Offset = 0;
+            float Speed = 0, Amplitude = 0, Frequency = 1, Angular_Offset = 0;
             bool isOriented = false;
 
-            Animation_Data (SIM::UI::Animation_Types animation, float speed = 0, float amplitude = 1, float frequency = 1, float angular_offset = 0, bool isoriented = false) {
+            Animation_Data (SIM::UI::Animation_Types animation, float speed = 0, float amplitude = 0, float frequency = 1, float angular_offset = 0, bool isoriented = false) {
                 Animation_Type = animation;
                 Speed = speed;
                 Amplitude = amplitude;
@@ -728,8 +728,8 @@ namespace SIM {
                     switch (Data.Animation_Type) {
 
                     /*  For the Sinusoidal, respectively Cosinusoidal animations,
-                        The derivative will be used to calculate the maximum angle, which is 45 degrees.
-                        Once again, using the derivative formula, the coefficient will be determined.
+                        The tangent line at x = 0 will be used to calculate the maximum angle, which is 45 degrees.
+                        Using the derivative formula, the coefficient will be determined.
                     */
 
                     case SIM::UI::Sinusoidal:
@@ -781,8 +781,15 @@ namespace SIM {
                         break;
 
                     case SIM::UI::Circular:
+                        
+                        //Here, either a custom amplitude or one based on the text size (if the data amplitude is left as 0) will be used.
 
-                        Amplitude = (Size.x / (2*M_PI));
+                        if (Data.Amplitude == 0) {
+                            Amplitude = (Size.x / (2*M_PI));
+                        }
+                        else {
+                            Amplitude = Data.Amplitude;
+                        }
 
                         if (Background_Dependency && Background.getSize() != sf::Vector2f(2*Amplitude, 2*Amplitude)) {
                             Background.setSize(sf::Vector2f(2*Amplitude, 2*Amplitude));
