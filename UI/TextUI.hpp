@@ -541,10 +541,8 @@ namespace SIM {
 
                     }
 
-                    if (String.size() > TextBox.size()) {
-                        TextBox.resize(String.size());
-                        TextBox.shrink_to_fit();
-                    }
+                    TextBox.resize(String.size());
+                    TextBox.shrink_to_fit();
                 }
                 else {
 
