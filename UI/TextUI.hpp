@@ -781,7 +781,7 @@ namespace SIM {
                         break;
 
                     case SIM::UI::Circular:
-                        
+
                         //Here, either a custom amplitude or one based on the text size (if the data amplitude is left as 0) will be used.
 
                         if (Data.Amplitude == 0) {
@@ -907,39 +907,6 @@ namespace SIM {
                 }
 
             }
-
-            /// SETSCALE
-            /*
-                >! @brief Changes the scale of a letter based on the given index and size.
-                -
-                >! @param Position - the letter's index, Size - the new scale size.
-            */
-
-            void setScale (unsigned int Position, const sf::Vector2f& Size) {
-                TextBox[Position].setScale(Size);
-            }
-
-            /// SETSCALE (GENERIC)
-            /*
-                >! @brief Changes the scale of the text.
-                -
-                >! @param Size - the new scale size.
-            */
-
-            void setScale (const sf::Vector2f& size) {
-
-                if (TextAccess == SIM::UI::Poly) {
-                    for (int i = 0; i < TextBox.size(); ++i) {
-                        TextBox[i].setScale(size);
-                    }
-                }
-                else {
-                    TextBox[0].setScale(size);
-                }
-
-            }
-
-            sf::Vector2f getScale (unsigned int Position) {    return TextBox[Position].getScale();    }
 
             /// GETSIZE
             /*
