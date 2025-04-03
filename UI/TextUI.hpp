@@ -532,7 +532,7 @@ namespace SIM {
                     size_t Arr_Size = TextBox.size();
                     for (unsigned int i = 0; i < String.size(); ++i) {
 
-                        if (i < String.size() - Arr_Size) {
+                        if (i >= Arr_Size) {
                             add (String[i]);
                         }
                         else {
