@@ -803,7 +803,7 @@ namespace SIM {
                         }
 
                         for (unsigned int i = 0; i < TextBox.size(); ++i) {
-                            float Int_Angle = fmod((Angle + ((float)i / TextBox.size())*360), 360);
+                            float Int_Angle = fmod((Angle + ((float)i / TextBox.size())*360) + Rotation, 360);
 
                             TextBox[i].setRotation(Data.Angular_Offset);
 
