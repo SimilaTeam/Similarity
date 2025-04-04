@@ -16,12 +16,8 @@
 #define MOUSEMAP_HPP_INCLUDED
 
 #include <iostream>
-#include <SFML/Graphics.hpp>
 #include <functional>
-#include "KeyStates.hpp"
 #include "HandleInput.hpp"
-#include "InputLists.hpp"
-#include <unordered_map>
 
 namespace SIM {
 
