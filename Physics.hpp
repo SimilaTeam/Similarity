@@ -15,7 +15,8 @@
 #ifndef PHYSICS_HPP_INCLUDED
 #define PHYSICS_HPP_INCLUDED
 
-#include <SFML/Graphics.hpp>
+#include <SFML/System/Clock.hpp>
+#include <SFML/System/Vector2.hpp>
 #include <cmath>
 
 namespace SIM {
@@ -24,7 +25,7 @@ namespace SIM {
 
         float Gravitational = 9.81;
 
-        float Measure_Ratio; // 1 METRE / PIXELS CORRESPONDING TO 1 PIXEL
+        float Measure_Ratio; // 1 METER / PIXELS CORRESPONDING TO 1 PIXEL
 
         bool getFallState (const float& Reference, const float Velocity, const float Lower_Limit) {
             return ((Velocity >= 0) && (Reference < Lower_Limit));
