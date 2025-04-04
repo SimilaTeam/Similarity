@@ -15,7 +15,10 @@
 #ifndef MOUSECONTAINED_HPP_INCLUDED
 #define MOUSECONTAINED_HPP_INCLUDED
 
-#include <SFML/Graphics.hpp>
+#include <SFML/Window/Mouse.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/Rect.hpp>
 
 namespace SIM {
 
