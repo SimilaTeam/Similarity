@@ -16,12 +16,8 @@
 #define KEYBOARDMAP_HPP_INCLUDED
 
 #include <iostream>
-#include <SFML/Graphics.hpp>
 #include <functional>
-#include "KeyStates.hpp"
 #include "HandleInput.hpp"
-#include "InputLists.hpp"
-#include <unordered_map>
 
 namespace SIM {
 
@@ -36,7 +32,7 @@ namespace SIM {
             > A notable use of KeyboardMaps is in videogames (example: moving), also in simulations and other softwares that depend on user keyboard input.
         */
 
-        class KeyboardMap{
+        class KeyboardMap {
         private:
 
             std::unordered_map<KeyGroup, std::function<void()>, KeyboardHasher> Input_Map;
