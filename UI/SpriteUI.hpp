@@ -15,9 +15,8 @@
 #ifndef SPRITEUI_HPP_INCLUDED
 #define SPRITEUI_HPP_INCLUDED
 
-#include "SFML/Graphics.hpp"
-#include "UIStructures.hpp"
-
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 namespace SIM {
 
