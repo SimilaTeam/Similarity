@@ -15,7 +15,8 @@
 #ifndef TEXTUI_HPP_INCLUDED
 #define TEXTUI_HPP_INCLUDED
 
-#include "SFML/Graphics.hpp"
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 #include "UIStructures.hpp"
 #include "../Input.hpp"
 #include "../Time.hpp"
