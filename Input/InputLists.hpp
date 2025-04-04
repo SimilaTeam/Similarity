@@ -15,6 +15,10 @@
 #ifndef INPUTLISTS_HPP_INCLUDED
 #define INPUTLISTS_HPP_INCLUDED
 
+#include <SFML/Window/Keyboard.hpp>
+#include <SFML/Window/Mouse.hpp>
+#include <unordered_map>
+
 namespace SIM {
 
     namespace Input {
