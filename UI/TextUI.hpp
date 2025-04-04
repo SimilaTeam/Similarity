@@ -17,6 +17,7 @@
 
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 #include "UIStructures.hpp"
 #include "../Input.hpp"
 #include "../Time.hpp"
