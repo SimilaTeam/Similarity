@@ -15,8 +15,9 @@
 #ifndef SPRITEUI_HPP_INCLUDED
 #define SPRITEUI_HPP_INCLUDED
 
-#include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+#include "../Object.hpp"
+#include "../Input/MouseMap.hpp"
 
 namespace SIM {
 
