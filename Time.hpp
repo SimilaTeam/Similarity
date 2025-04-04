@@ -15,7 +15,8 @@
 #ifndef TIME_HPP_INCLUDED
 #define TIME_HPP_INCLUDED
 
-#include<SFML/System/Time.hpp>
+#include <SFML/System/Time.hpp>
+#include <SFML/System/Clock.hpp>
 
 namespace SIM {
 
