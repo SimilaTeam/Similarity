@@ -15,8 +15,6 @@
 #ifndef KEYSTATES_HPP_INCLUDED
 #define KEYSTATES_HPP_INCLUDED
 
-#include <SFML/Graphics.hpp>
-
 namespace SIM {
 
     namespace Input {
