@@ -17,6 +17,8 @@
 
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Window/Mouse.hpp>
+#include "KeyStates.hpp"
+#include "InputBoolean.hpp"
 #include <unordered_map>
 
 namespace SIM {
