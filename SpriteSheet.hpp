@@ -17,7 +17,6 @@
 
 #include <iostream>
 #include <SFML/Graphics/Rect.hpp>
-#include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <unordered_map>
 
