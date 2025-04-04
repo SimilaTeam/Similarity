@@ -17,6 +17,7 @@
 
 #include <iostream>
 #include <functional>
+#include "HandleInput.hpp"
 
 namespace SIM {
 
