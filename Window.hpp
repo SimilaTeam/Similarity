@@ -16,7 +16,6 @@
 #define WINDOW_HPP_INCLUDED
 
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/System/Vector2.hpp>
 
 namespace SIM {
 
