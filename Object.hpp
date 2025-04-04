@@ -15,8 +15,8 @@
 #ifndef OBJECT_HPP_INCLUDED
 #define OBJECT_HPP_INCLUDED
 
-#include <SFML/Graphics.hpp>
 #include "SpriteSheet.hpp"
+#include <SFML/Graphics/Sprite.hpp>
 #include "Time.hpp"
 
 namespace SIM {
