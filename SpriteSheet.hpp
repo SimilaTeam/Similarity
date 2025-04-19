@@ -50,12 +50,12 @@ namespace SIM {
 
             if (Line_Size.x > Line_Size.y) {
                 for (unsigned int p = 0; p < Line_Size.x/Sprite_Size.x; ++p) {
-                    Output.push_back(sf::IntRect(p*Sprite_Size.x, Start_Position.y, Sprite_Size.x, Sprite_Size.y));
+                    Output.push_back(sf::IntRect(Start_Position.x + p*Sprite_Size.x, Start_Position.y, Sprite_Size.x, Sprite_Size.y));
                 }
             }
             else {
                 for (unsigned int p = 0; p < Line_Size.y/Sprite_Size.y; ++p) {
-                    Output.push_back(sf::IntRect(Start_Position.x, p*Sprite_Size.y, Sprite_Size.x, Sprite_Size.y));
+                    Output.push_back(sf::IntRect(Start_Position.x, Start_Position.y + p*Sprite_Size.y, Sprite_Size.x, Sprite_Size.y));
                 }
             }
 
