@@ -1,0 +1,161 @@
+/// SIMILARITY - alpha
+//
+//  Copyright (C) 2025 - SimilaTeam
+//  Contact: SimilaTeam@gmail.com
+//
+//  Similarity is an open-source project aiming towards the creation of tools that ease the usage of the C++ library SFML - Simple and Fast Multimedia Library.
+//
+//  Similarity is free to download and use for any purpose, including commercial purposes.
+//
+//  This software may not be distributed as an altered version without a notice specifying so.
+//  This software may also not be claimed as another's.
+
+/// INPUT ~ KEYBOARD MAP
+
+#ifndef KEYBOARDMAP_HPP_INCLUDED
+#define KEYBOARDMAP_HPP_INCLUDED
+
+#include <iostream>
+#include <functional>
+#include "HandleInput.hpp"
+
+namespace SIM {
+
+    namespace Input {
+
+        /// KEYBOARDMAP
+        /*
+            >! @brief Associates a command to a KeyGroup.
+            > A KeyboardMap is a data structure used to link a KeyGroup and a command (in the form of a hash table).
+            -
+            >! @details A KeyboardMap is used mainly in storing inputs of a specific category.
+            > A notable use of KeyboardMaps is in videogames (example: moving), also in simulations and other softwares that depend on user keyboard input.
+        */
+
+        class KeyboardMap {
+        private:
+
+            std::unordered_map<KeyGroup, std::function<void()>, KeyboardHasher> Input_Map;
+
+        public:
+
+            /// SETINPUT
+            /*
+                >! @brief Adds / Changes an element to / in the input map.
+                > setInput is a function that stores a condition and its result in the input map.
+                -
+                >! @param Key - the key, ActivationType - the condition needed for the command to be executed, Function - the command.
+            */
+
+            void setInput (sf::Keyboard::Key Key, Key_States::Activation_Type ActivationType, std::function<void()>& Function){
+
+                KeyGroup group;
+                group.Key = Key;
+                group.Activation = ActivationType;
+
+                Input_Map[group] = Function;
+
+            }
+
+            /// TRY
+            /*
+                >! @brief Tries an input.
+                > Try is a function that determines whether the condition for a command to be executed is met.
+                > If the condition is met, the command is executed.
+                -
+                >! @param Key - the key, ActivationType - the condition needed for the command to be executed.
+            */
+
+            bool Try (sf::Keyboard::Key Key, Key_States::Activation_Type ActivationType){
+
+                KeyGroup group;
+                group.Key = Key;
+                group.Activation = ActivationType;
+
+                if (Input_Map.find(group) == Input_Map.end()){
+                    throw std::runtime_error("Key does not exist in input map.");
+                }
+
+                if (Handle_Input (Key, ActivationType) ){
+                    std::function<void()> key = Input_Map.find(group)->second;
+                    key();
+                    return true;
+                }
+                else {
+                    return false;
+                }
+
+            }
+
+            /// TRYALL
+            /*
+                >! @brief Tries every input.
+                > TryAll is basically the function above, Try, but done for every element in the input map.
+            */
+
+            void TryAll () {
+                std::unordered_map <KeyGroup, std::function<void()>, KeyboardHasher >::iterator i;
+
+                for(i = Input_Map.begin(); i != Input_Map.end(); ++i){
+                    Try(i->first.Key, i->first.Activation);
+                }
+            }
+
+            /// ACTIVECOUNT
+            /*
+                >! @brief Gets the number of active conditions.
+                -
+                >! @details ActiveCount is a function that iterates through the input map and checks whether each condition is met.
+                -
+                >! @return The count of active conditions.
+            */
+
+            uint16_t ActiveCount () {
+
+                uint16_t Count = 0;
+                std::unordered_map <KeyGroup, std::function<void()>, KeyboardHasher >::iterator i;
+
+                for(i = Input_Map.begin(); i != Input_Map.end(); ++i) {
+
+                    KeyGroup group = i->first;
+
+                    if(Handle_Input (group.Key, group.Activation) ){
+                        ++Count;
+                    }
+
+                }
+                return Count;
+            }
+
+            /// ACTIVECOUNT (CONDITION-BASED)
+            /*
+                >! @brief Gets the number of active conditions that are of same type.
+                -
+                >! @details An overloaded function of ActiveCount that iterates through the input map and returns the count of common conditions that are met, based on the parameter.
+                -
+                >! @param Activation_Type - the common condition.
+                -
+                >! @return The count of active conditions.
+            */
+
+            uint16_t ActiveCount (SIM::Input::Key_States::Activation_Type Activation_Type) {
+
+                uint16_t Count = 0;
+                std::unordered_map <KeyGroup, std::function<void()>, KeyboardHasher >::iterator i;
+
+                for (i = Input_Map.begin(); i != Input_Map.end(); ++i) {
+                    KeyGroup group = i->first;
+                    if(group.Activation == Activation_Type  && Handle_Input (group.Key, group.Activation) ){
+                        ++Count;
+                    }
+                }
+                return Count;
+            }
+
+        };
+
+    }
+
+}
+
+#endif
