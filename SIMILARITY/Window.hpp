@@ -20,7 +20,7 @@
 namespace SIM {
 
     namespace Window {
-        
+
         /// VALUE_RESIZE
         /*
             >! @brief Stabilizes the window size.
@@ -42,7 +42,7 @@ namespace SIM {
         void Value_Resize (sf::RenderWindow& Window, const sf::Vector2u& Original_Size) {
             Window.setSize (sf::Vector2u( ((float)sf::VideoMode().getDesktopMode().height/(float)Original_Size.y) * Original_Size.x, ((float)sf::VideoMode().getDesktopMode().height/(float)Original_Size.y) * Original_Size.y) );
         }
-        
+
         /// VALUE_RESIZE (MONITOR DEPENDENT)
         /*
             >! @brief Centers the window based on the screen size.

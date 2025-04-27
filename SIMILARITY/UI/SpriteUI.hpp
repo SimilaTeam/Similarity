@@ -40,7 +40,7 @@ namespace SIM {
 
             sf::FloatRect Hitbox;
             bool Hitbox_Dependency = true;
-            
+
             /// SETPOSITION
             /*
                 >! @brief Changes the position of the UI.
@@ -65,11 +65,11 @@ namespace SIM {
                 -
                 >! @param Offset - the position offset.
             */
-            
+
             void move (const sf::Vector2f& Offset) {
                 setPosition (sf::Vector2f (Object.Sprite.getPosition().x + SIM::Time::DeltaTime.asSeconds()*Offset.x, Object.Sprite.getPosition().y + SIM::Time::DeltaTime.asSeconds()*Offset.y) );
             }
-            
+
             /// DRAW
             /*
                 >! @brief Draws the UI to a window.
