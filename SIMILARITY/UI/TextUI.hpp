@@ -92,7 +92,6 @@ namespace SIM {
             sf::Vector2f Origin = sf::Vector2f (0, 0);
 
             sf::Vector2f Position = sf::Vector2f (0, 0);
-            sf::Vector2f Internal_Background_Position = sf::Vector2f (0, 0);
 
             sf::Vector2f Size = sf::Vector2f (0, 0); // SIZE OF THE TEXTBOX
 
@@ -200,8 +199,8 @@ namespace SIM {
                 }
 
                 if (Background_Dependency) {
-                    Background.setOrigin (Origin);
-                    Background.setPosition (Internal_Background_Position);
+                    Background.setOrigin (sf::Vector2f (Origin.x, Origin.y - Size.y/2));
+                    Background.setPosition (Position);
                 }
 
             }
@@ -326,23 +325,18 @@ namespace SIM {
 
             void setCharacterSize (unsigned int CharacterSize) {
 
-                Character_Size = CharacterSize;
-
                 if (TextBox.size() > 0) {
 
                     if (TextAccess == SIM::UI::Mono) {
                         TextBox[0].setCharacterSize (CharacterSize);
-                        Size.x = TextBox[0].getLocalBounds().width;
-                        Size.y = TextBox[0].getLocalBounds().height;
+                        Size.x = TextBox[0].getGlobalBounds().width;
+                        Size.y = TextBox[0].getGlobalBounds().height;
                     }
                     else {
-                        Size = sf::Vector2f (0, 0);
+                        Size.x *= (float)CharacterSize/Character_Size;
+                        Size.y *= (float)CharacterSize/Character_Size;
                         for (unsigned int i = 0; i < TextBox.size(); ++i) {
                             TextBox[i].setCharacterSize (CharacterSize);
-                            Size.x += TextBox[i].getLocalBounds().width;
-                            if (TextBox[i].getLocalBounds().height > Size.y) {
-                                Size.y = TextBox[i].getLocalBounds().height;
-                            }
                         }
                     }
 
@@ -359,6 +353,8 @@ namespace SIM {
 
                 }
 
+                Character_Size = CharacterSize;
+
             }
 
             unsigned int getCharacterSize () const {   return Character_Size;  }
@@ -374,10 +370,7 @@ namespace SIM {
 
             void setPosition (const sf::Vector2f& position) {
 
-                Internal_Background_Position.x += position.x - Position.x;
-                Internal_Background_Position.y += position.y - Position.y;
-
-                Background.setPosition (Internal_Background_Position);
+                Background.move (sf::Vector2f (position.x - Position.x, position.y - Position.y));
 
                 if (TextBox.size() > 0) {
 
@@ -792,7 +785,7 @@ namespace SIM {
                         }
 
                         if (Background_Dependency && Background.getSize() != sf::Vector2f(2*Amplitude, 2*Amplitude)) {
-                            Background.setSize(sf::Vector2f(2*Amplitude, 2*Amplitude));
+                            Background.setSize(sf::Vector2f (2*Amplitude, 2*Amplitude));
                             setOrigin (sf::Vector2f (Amplitude, Amplitude) );
                         }
 
@@ -946,3 +939,4 @@ namespace SIM {
 }
 
 #endif
+
